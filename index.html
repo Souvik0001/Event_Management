@@ -1,0 +1,1370 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Event Organisers | Souvik</title>
+
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+
+    :root {
+      --theme-color: #3867d6;
+    }
+
+    * {
+      font-family: "Poppins", sans-serif;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      outline: none;
+      border: none;
+      text-decoration: none;
+      text-transform: capitalize;
+      transition: 0.2s linear;
+    }
+
+    html {
+      font-size: 62.5%;
+      overflow-x: hidden;
+      scroll-padding-top: 7rem;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #222;
+    }
+
+    section {
+      padding: 2rem 9%;
+    }
+
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 10000;
+      background: #333;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.5rem 9%;
+    }
+
+    .header .logo {
+      font-weight: bolder;
+      color: #fff;
+      font-size: 2.5rem;
+    }
+
+    .header .logo span {
+      color: var(--theme-color);
+    }
+
+    .header .navbar a {
+      font-size: 1.7rem;
+      color: #fff;
+      margin-left: 2rem;
+    }
+
+    .header .navbar a:hover {
+      color: var(--theme-color);
+    }
+
+    #menu-bars {
+      font-size: 3rem;
+      color: #fff;
+      cursor: pointer;
+      display: none;
+    }
+
+    .home .content {
+      text-align: center;
+      padding-top: 6rem;
+      margin: 2rem auto;
+      max-width: 70rem;
+    }
+
+    .home .content h3 {
+      color: #fff;
+      font-size: 4.5rem;
+      text-transform: uppercase;
+    }
+
+    .home .content h3 span {
+      color: var(--theme-color);
+      text-transform: uppercase;
+    }
+
+    .btn {
+      margin-top: 1rem;
+      display: inline-block;
+      padding: 0.8rem 3rem;
+      font-size: 1.7rem;
+      border-radius: 0.5rem;
+      background: #666;
+      color: #fff;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .btn:hover {
+      background: var(--theme-color);
+    }
+
+    .home .home-slider .swiper-slide {
+      overflow: hidden;
+      border-radius: 0.5rem;
+      height: 50rem;
+      width: 35rem;
+    }
+
+    .home .home-slider .swiper-slide img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .heading {
+      text-align: center;
+      padding-bottom: 2rem;
+      color: #fff;
+      text-transform: uppercase;
+      font-size: 4rem;
+    }
+
+    .heading span {
+      color: var(--theme-color);
+      text-transform: uppercase;
+    }
+
+    .service .box-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(27rem, 1fr));
+      gap: 1.5rem;
+    }
+
+    .service .box-container .box {
+      border-radius: 0.5rem;
+      background: #333;
+      text-align: center;
+      padding: 2.5rem;
+    }
+
+    .service .box-container .box i {
+      height: 6rem;
+      width: 6rem;
+      line-height: 6rem;
+      border-radius: 50%;
+      font-size: 2.5rem;
+      background: var(--theme-color);
+      color: #fff;
+    }
+
+    .service .box-container .box h3 {
+      font-size: 2rem;
+      color: #fff;
+      padding: 1rem 0;
+    }
+
+    .service .box-container .box p {
+      font-size: 1.4rem;
+      color: #eee;
+      line-height: 1.8;
+    }
+
+    .about .row {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .about .row .image {
+      flex: 1 1 45rem;
+      padding: 1rem;
+    }
+
+    .about .row .image img {
+      width: 100%;
+      border-radius: 0.5rem;
+      border: 1rem solid #333;
+    }
+
+    .about .row .content {
+      flex: 1 1 45rem;
+    }
+
+    .about .row .content h3 {
+      font-size: 3.5rem;
+      color: #fff;
+    }
+
+    .about .row .content p {
+      font-size: 1.5rem;
+      color: #eee;
+      padding: 1rem 0;
+      line-height: 2;
+    }
+
+    .gallery .box-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(27rem, 1fr));
+      gap: 1.5rem;
+    }
+
+    .gallery .box-container .box {
+      position: relative;
+      border: 1rem solid #333;
+      border-radius: 0.5rem;
+      height: 25rem;
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    .gallery .box-container .box img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .gallery .box-container .box:hover img {
+      transform: scale(1.1);
+      filter: grayscale();
+    }
+
+    .gallery .box-container .box .title {
+      position: absolute;
+      top: -10rem;
+      left: 0;
+      right: 0;
+      background: #333;
+      color: #fff;
+      text-align: center;
+      padding-bottom: 1rem;
+      font-size: 2rem;
+    }
+
+    .gallery .box-container .box:hover .title {
+      top: 0;
+    }
+
+    .gallery .box-container .box .icons {
+      position: absolute;
+      bottom: -10rem;
+      left: 0;
+      right: 0;
+      background: #333;
+      padding-top: 1rem;
+      text-align: center;
+    }
+
+    .gallery .box-container .box:hover .icons {
+      bottom: 0;
+    }
+
+    .gallery .box-container .box .icons a {
+      font-size: 2rem;
+      margin: 0.5rem 1rem;
+      color: #fff;
+    }
+
+    .gallery .box-container .box .icons a:hover {
+      color: var(--theme-color);
+    }
+
+    .price .box-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+      gap: 1.5rem;
+    }
+
+    .price .box-container .box {
+      padding: 2rem 0;
+      background: #333;
+      border-radius: 0.5rem;
+      text-align: center;
+    }
+
+    .price .box-container .box:hover {
+      transform: scale(1.03);
+    }
+
+    .price .box-container .box .title {
+      background: var(--theme-color);
+      color: #fff;
+      padding: 1.5rem 0;
+      font-size: 2rem;
+    }
+
+    .price .box-container .box .amount {
+      color: #fff;
+      padding-top: 2rem;
+      font-size: 4rem;
+    }
+
+    .price .box-container .box ul {
+      list-style-type: none;
+      padding: 1rem 0;
+    }
+
+    .price .box-container .box ul li {
+      font-size: 1.5rem;
+      color: #eee;
+      padding: 1rem 0;
+    }
+
+    .price .box-container .box ul li i {
+      color: var(--theme-color);
+      padding-right: 0.5rem;
+    }
+
+    .reivew .box {
+      border-radius: 0.5rem;
+      background: #333;
+      padding: 2rem;
+      position: relative;
+    }
+
+    .reivew .box .fa-quote-right {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      color: var(--theme-color);
+      font-size: 5rem;
+    }
+
+    .reivew .box .user {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      padding-bottom: 1rem;
+    }
+
+    .reivew .box .user img {
+      height: 7rem;
+      width: 7rem;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .reivew .box .user h3 {
+      font-size: 2rem;
+      color: #fff;
+    }
+
+    .reivew .box .user span {
+      font-size: 1.5rem;
+      color: #eee;
+    }
+
+    .reivew .box p {
+      line-height: 2;
+      color: #eee;
+      padding: 0.5rem 0;
+      font-size: 1.6rem;
+    }
+
+    .contact form {
+      max-width: 70rem;
+      margin: 1rem auto;
+      text-align: center;
+    }
+
+    .contact form .inputBox {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .contact form .inputBox input,
+    .contact form textarea {
+      width: 100%;
+      background: #333;
+      border-radius: 0.5rem;
+      padding: 1rem;
+      margin: 0.7rem 0;
+      font-size: 1.5rem;
+      color: #fff;
+      text-transform: none;
+    }
+
+    .contact form .inputBox input::placeholder,
+    .contact form textarea::placeholder {
+      color: #eee;
+      text-transform: capitalize;
+    }
+
+    .contact form .inputBox input:focus,
+    .contact form textarea:focus {
+      background: #444;
+    }
+
+    .contact form .inputBox input {
+      width: 49%;
+    }
+
+    .contact form textarea {
+      resize: none;
+    }
+
+    .footer {
+      background: #111;
+    }
+
+    .footer .box-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+      gap: 1.5rem;
+    }
+
+    .footer .box-container .box h3 {
+      font-size: 2.5rem;
+      padding: 1rem 0;
+      color: #fff;
+    }
+
+    .footer .box-container .box a {
+      display: block;
+      font-size: 1.5rem;
+      padding: 1rem 0;
+      color: #eee;
+    }
+
+    .footer .box-container .box a i {
+      padding-right: 0.5rem;
+      color: var(--theme-color);
+    }
+
+    .footer .box-container .box a:hover i {
+      padding-right: 1.5rem;
+      color: #fff;
+    }
+
+    .footer .credit {
+      text-align: center;
+      border-top: 0.1rem solid #222;
+      color: #fff;
+      padding: 2rem;
+      padding-top: 2.5rem;
+      margin-top: 1rem;
+      font-size: 2rem;
+      margin: none;
+
+    }
+
+    .footer .credit span {
+      color: var(--theme-color);
+      margin: none;
+    }
+
+    html::-webkit-scrollbar {
+      width: 1rem;
+    }
+
+    html::-webkit-scrollbar-track {
+      background: #444;
+    }
+
+    html::-webkit-scrollbar-thumb {
+      background: var(--theme-color);
+      border-radius: 5rem;
+    }
+
+    .theme-toggler {
+      position: fixed;
+      top: 10rem;
+      right: -20rem;
+      background: #333;
+      z-index: 1000;
+      width: 20rem;
+      text-align: center;
+    }
+
+    .theme-toggler.active {
+      right: 0;
+    }
+
+    .theme-toggler h3 {
+      color: #fff;
+      padding: 1rem 0;
+      font-size: 2rem;
+    }
+
+    .theme-toggler .buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding: 1rem;
+    }
+
+    .theme-toggler .buttons .theme-btn {
+      height: 5rem;
+      width: 5rem;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .theme-toggler .toggle-btn {
+      position: absolute;
+      top: 0;
+      left: -5.9rem;
+      padding: 1.3rem 1.5rem;
+      background: #333;
+      cursor: pointer;
+    }
+
+    .theme-toggler .toggle-btn i {
+      color: #fff;
+      font-size: 3rem;
+      animation: spin 4s linear infinite;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* media queries  */
+
+    @media (max-width: 991px) {
+      html {
+        font-size: 55%;
+      }
+
+      .header {
+        padding: 1.5rem 2rem;
+      }
+
+      section {
+        padding: 2rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      #menu-bars {
+        display: initial;
+      }
+
+      .header .navbar {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        border-top: 0.1rem solid #222;
+        background: #333;
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+      }
+
+      .header .navbar.active {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+      }
+
+      .fa-times {
+        transform: rotate(180deg);
+      }
+
+      .header .navbar a {
+        display: flex;
+        background: #222;
+        border-radius: 0.5rem;
+        padding: 1.3rem;
+        margin: 1.3rem;
+        font-size: 2rem;
+      }
+
+      .home .content h3 {
+        font-size: 4rem;
+      }
+    }
+
+    @media (max-width: 450px) {
+      html {
+        font-size: 50%;
+      }
+
+      .home .home-slider .swiper-slide {
+        width: 27rem;
+      }
+
+      .contact form .inputBox input {
+        width: 100%;
+      }
+    }
+
+    main {
+      display: flex;
+      justify-content: space-between;
+      margin: 20px;
+    }
+
+    footer {
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+
+    #event-listing {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      width: 70%;
+    }
+
+    .event-item {
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+      padding: 20px;
+      width: calc(33% - 20px);
+    }
+
+    .event-item img {
+      display: block;
+      margin: 0 auto 10px;
+      max-width: 100%;
+    }
+
+    .event-item h3 {
+      font-size: 1.2em;
+      margin: 0 0 10px;
+    }
+
+    .event-item p {
+      margin: 0;
+    }
+
+    #filters {
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      width: 25%;
+    }
+
+    #filters h2 {
+      font-size: 1.5em;
+      margin-bottom: 20px;
+    }
+
+    #filters h3 {
+      font-size: 1.2em;
+      margin-bottom: 10px;
+    }
+
+    #filters label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    /* Contact form */
+    .contact-form {
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      width: 70%;
+      margin: 20px auto;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .Name {
+      color: rgb(255, 255, 255);
+    }
+
+    .Email {
+      color: white;
+    }
+
+    .Phone {
+      color: white;
+    }
+
+    .Eventz {
+      color: white;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="email"],
+    .form-group input[type="tel"],
+    .form-group select {
+      width: 100%;
+      padding: 10px;
+      font-size: 1em;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    .form-group input[type="submit"] {
+      background-color: #333;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-size: 1em;
+    }
+
+    .form-group input[type="submit"]:hover {
+      background-color: #555;
+    }
+  </style>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+
+</head>
+
+<body>
+  <header class="header">
+    <a href="#" class="logo"><span>Lucifer</span> Events</a>
+
+    <nav class="navbar">
+      <a href="#home">home</a>
+      <a href="#ChooseYourServices">Choose Your Service</a>
+      <a href="#service">service</a>
+      <a href="#about">about</a>
+      <a href="#gallery">gallery</a>
+      <a href="#review">review</a>
+      <a href="#contact">contact</a>
+    </nav>
+
+    <div id="menu-bars" class="fas fa-bars"></div>
+  </header>
+
+  <section class="home" id="home">
+    <div class="content">
+      <h3>
+        where your ideas take off
+        <span> Lucifer Events </span>
+      </h3>
+      <a href="#" class="btn">get quote</a>
+    </div>
+
+    <div class="swiper-container home-slider">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <img src="images/home1.jpg" alt="" />
+        </div>
+        <div class="swiper-slide">
+          <img src="images/home2.jpg" alt="" />
+        </div>
+        <div class="swiper-slide">
+          <img src="images/home3.jpg" alt="" />
+        </div>
+        <div class="swiper-slide">
+          <img src="images/home4.jpg" alt="" />
+        </div>
+        <div class="swiper-slide">
+          <img src="images/home5.jpg" alt="" />
+        </div>
+        <div class="swiper-slide">
+          <img src="images/home6.jpg" alt="" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <h1 class="heading" id="ChooseYourServices">Choose Your <span>services</span></h1>
+
+  <main>
+    <section id="event-listing">
+      <!-- Event listing will be populated dynamically using JavaScript -->
+    </section>
+
+    <aside id="filters">
+      <h2>Filters</h2>
+      <h3>Services</h3>
+      <label><input type="checkbox" class="service-checkbox" value="catering" />
+        Catering</label>
+      <label><input type="checkbox" class="service-checkbox" value="photography" />
+        Photography</label>
+      <label><input type="checkbox" class="service-checkbox" value="entertainment" />
+        Entertainment</label>
+
+      <h3>Budget Range</h3>
+      <label><input type="radio" name="budget" class="budget-radio" value="under-5000" />
+        Under $5000</label>
+      <label><input type="radio" name="budget" class="budget-radio" value="5000-10000" />
+        $5000-$10000</label>
+      <label><input type="radio" name="budget" class="budget-radio" value="above-10000" />
+        Above $10000</label>
+    </aside>
+  </main>
+
+  <div id="event-details">
+
+  </div>
+
+  <section class="service" id="service">
+    <h1 class="heading">our <span>services</span></h1>
+
+    <div class="box-container">
+      <div class="box">
+        <i class="fas fa-envelope"></i>
+        <h3>invitation card design</h3>
+        <p>
+          We craft elegant and personalized invitation cards that reflect your event's theme and style, leaving a
+          lasting impression.
+        </p>
+      </div>
+
+      <div class="box">
+        <i class="fas fa-photo-video"></i>
+        <h3>photos and videos</h3>
+        <p>
+          Our skilled team captures every moment beautifully, from candid shots to professional videos, ensuring your
+          memories are preserved with utmost quality.
+        </p>
+      </div>
+
+      <div class="box">
+        <i class="fas fa-music"></i>
+        <h3>entertainment</h3>
+        <p>
+          Here at Lucifer Events, we offer a diverse range of entertainment options, from live bands and DJs to
+          performers and interactive activities, creating an engaging experience for all guests.
+        </p>
+      </div>
+
+      <div class="box">
+        <i class="fas fa-car"></i>
+        <h3>enent vehicles</h3>
+        <p>
+          We provide transportation solutions tailored to your event's needs, including luxury cars, shuttles, and
+          logistics coordination for smooth guest movement.
+        </p>
+      </div>
+
+      <div class="box">
+        <i class="fas fa-map-marker-alt"></i>
+        <h3>venue selection</h3>
+        <p>
+          With our extensive network of venues, we help you choose the perfect setting for your event, considering
+          factors like capacity, ambiance, and amenities.
+        </p>
+      </div>
+
+      <div class="box">
+        <i class="fas fa-birthday-cake"></i>
+        <h3>food catering</h3>
+        <p>
+          Our culinary experts curate delicious menus, catering to diverse preferences and dietary requirements,
+          ensuring a delightful dining experience for all attendees.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <h1 class="heading"><span>about</span> us</h1>
+
+    <div class="row">
+      <div class="image">
+        <img src="images/about.jpg" alt="" />
+      </div>
+
+      <div class="content">
+        <h3>your occasion deserves our careful planning.</h3>
+        <p>
+          Welcome to Lucifer Events, your premier destination for unforgettable weddings, parties, and conferences. At
+          Lucifer Event Management, we specialize in curating exceptional experiences tailored to your unique vision and
+          requirements.
+        <p>
+          With Lucifer Events, you can trust that your event will be in expert hands, with meticulous attention to detail and a
+          commitment to exceeding your expectations. Contact us today to start planning your next unforgettable event!
+        </p>
+        <a href="#" class="btn">reach us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- gallery section starts  -->
+  <section class="gallery" id="gallery">
+    <h1 class="heading">our <span>gallery</span></h1>
+
+    <div class="box-container">
+      <div class="box">
+        <img src="images/gallery1.jpg" alt="" />
+        <h3 class="title">best events</h3>
+        <div class="icons">
+          <a href="#" class="fas fa-heart"></a>
+          <a href="#" class="fas fa-share"></a>
+          <a href="#" class="fas fa-eye"></a>
+        </div>
+      </div>
+
+      <div class="box">
+        <img src="images/gallery2.jpg" alt="" />
+        <h3 class="title">best events</h3>
+        <div class="icons">
+          <a href="#" class="fas fa-heart"></a>
+          <a href="#" class="fas fa-share"></a>
+          <a href="#" class="fas fa-eye"></a>
+        </div>
+      </div>
+
+      <div class="box">
+        <img src="images/gallery3.jpg" alt="" />
+        <h3 class="title">best events</h3>
+        <div class="icons">
+          <a href="#" class="fas fa-heart"></a>
+          <a href="#" class="fas fa-share"></a>
+          <a href="#" class="fas fa-eye"></a>
+        </div>
+      </div>
+
+      <div class="box">
+        <img src="images/gallery4.jpg" alt="" />
+        <h3 class="title">best events</h3>
+        <div class="icons">
+          <a href="#" class="fas fa-heart"></a>
+          <a href="#" class="fas fa-share"></a>
+          <a href="#" class="fas fa-eye"></a>
+        </div>
+      </div>
+
+      <div class="box">
+        <img src="images/gallery5.jpg" alt="" />
+        <h3 class="title">best events</h3>
+        <div class="icons">
+          <a href="#" class="fas fa-heart"></a>
+          <a href="#" class="fas fa-share"></a>
+          <a href="#" class="fas fa-eye"></a>
+        </div>
+      </div>
+
+      <div class="box">
+        <img src="images/gallery6.jpg" alt="" />
+        <h3 class="title">best events</h3>
+        <div class="icons">
+          <a href="#" class="fas fa-heart"></a>
+          <a href="#" class="fas fa-share"></a>
+          <a href="#" class="fas fa-eye"></a>
+        </div>
+      </div>
+
+      <div class="box">
+        <img src="images/gallery7.jpg" alt="" />
+        <h3 class="title">best events</h3>
+        <div class="icons">
+          <a href="#" class="fas fa-heart"></a>
+          <a href="#" class="fas fa-share"></a>
+          <a href="#" class="fas fa-eye"></a>
+        </div>
+      </div>
+
+      <div class="box">
+        <img src="images/gallery8.jpg" alt="" />
+        <h3 class="title">best events</h3>
+        <div class="icons">
+          <a href="#" class="fas fa-heart"></a>
+          <a href="#" class="fas fa-share"></a>
+          <a href="#" class="fas fa-eye"></a>
+        </div>
+      </div>
+
+      <div class="box">
+        <img src="images/gallery9.jpg" alt="" />
+        <h3 class="title">best events</h3>
+        <div class="icons">
+          <a href="#" class="fas fa-heart"></a>
+          <a href="#" class="fas fa-share"></a>
+          <a href="#" class="fas fa-eye"></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="reivew" id="review">
+    <h1 class="heading">client <span>reviews</span></h1>
+
+    <div class="review-slider swiper-container">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide box">
+          <i class="fas fa-quote-right"></i>
+          <div class="user">
+            <img src="images/img1.jpg" alt="" />
+            <div class="user-info">
+              <h3>nayana</h3>
+              <span>happy customer</span>
+            </div>
+          </div>
+          <p>
+            Lucifer Events exceeded my expectations with their exceptional attention to detail. From start to finish,
+            they demonstrated professionalism and creativity, ensuring every aspect of our event was flawless. Their
+            team's ability to handle logistics, coordination, and communication was truly impressive.
+          </p>
+        </div>
+
+        <div class="swiper-slide box">
+          <i class="fas fa-quote-right"></i>
+          <div class="user">
+            <img src="images/img2.jpg" alt="" />
+            <div class="user-info">
+              <h3>Trisha</h3>
+              <span>happy customer</span>
+            </div>
+          </div>
+          <p>
+            One of the standout features of Lucifer Events was their personalized approach. They took the time to
+            understand our vision and executed it perfectly, adding unique touches that made our event unforgettable.
+            Their flexibility and willingness to adapt to last-minute changes were commendable
+          </p>
+        </div>
+
+        <div class="swiper-slide box">
+          <i class="fas fa-quote-right"></i>
+          <div class="user">
+            <img src="images/img3.jpg" alt="" />
+            <div class="user-info">
+              <h3>Jahnvi</h3>
+              <span>happy customer</span>
+            </div>
+          </div>
+          <p>
+            I was thoroughly impressed by the seamless execution of the event by Lucifer Events. Everything from venue
+            setup to entertainment was handled with precision and expertise. Their team's commitment to delivering a
+            memorable experience for attendees was evident throughout the planning process.
+          </p>
+        </div>
+
+        <div class="swiper-slide box">
+          <i class="fas fa-quote-right"></i>
+          <div class="user">
+            <img src="images/img4.jpg" alt="" />
+            <div class="user-info">
+              <h3>Rohan</h3>
+              <span>happy customer</span>
+            </div>
+          </div>
+          <p>
+            Working with Lucfer Events made the entire event planning process stress-free. Their team's professionalism,
+            responsiveness, and creativity made them a pleasure to collaborate with. They went above and beyond to
+            ensure that every aspect of our event was executed flawlessly.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <h1 class="heading"><span>contact</span> us</h1>
+
+    <form id="contact-form">
+      <div class="form-group">
+        <label for="name" class="Name">Name :</label>
+        <input type="text" id="name" placeholder="Enter your name" name="name" required />
+      </div>
+      <div class="form-group">
+        <label for="email" class="Email">Email :</label>
+        <input type="email" id="email" placeholder="Enter your email ID" name="email" required />
+      </div>
+      <div class="form-group">
+        <label for="phone" class="Phone">Phone Number :</label>
+        <input type="tel" id="phone" placeholder="Enter your phone number" name="phone" required />
+      </div>
+      <div class="form-group">
+        <label for="event-type" class="Eventz">Event Type :</label>
+        <select id="event-type" name="event-type" required>
+          <option value="">Select Event Type</option>
+          <option value="Wedding">Wedding</option>
+          <option value="Conference">Conference</option>
+          <option value="Party">Party</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <input type="submit" value="Submit" />
+      </div>
+    </form>
+  </section>
+
+  <section class="footer">
+    <div class="credit">
+      created by <span>Souvik</span> | Copyright &copy 2024 all rights reserved.
+    </div>
+  </section>
+
+  <div class="theme-toggler">
+    <div class="toggle-btn">
+      <i class="fas fa-cog"></i>
+    </div>
+
+    <h3>choose color</h3>
+
+    <div class="buttons">
+      <div class="theme-btn" style="background: #ccff33"></div>
+      <div class="theme-btn" style="background: #d35400"></div>
+      <div class="theme-btn" style="background: #f39c12"></div>
+      <div class="theme-btn" style="background: #1abc9c"></div>
+      <div class="theme-btn" style="background: #3498db"></div>
+      <div class="theme-btn" style="background: #9b59b6"></div>
+    </div>
+  </div>
+
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
+  <!--JS file-->
+  <script>
+    let menu = document.querySelector("#menu-bars");
+    let navbar = document.querySelector(".navbar");
+
+    menu.onclick = () => {
+      menu.classList.toggle("fa-times");
+      navbar.classList.toggle("active");
+    };
+
+    let themeToggler = document.querySelector(".theme-toggler");
+    let toggleBtn = document.querySelector(".toggle-btn");
+
+    toggleBtn.onclick = () => {
+      themeToggler.classList.toggle("active");
+    };
+
+    window.onscroll = () => {
+      menu.classList.remove("fa-times");
+      navbar.classList.remove("active");
+      themeToggler.classList.remove("active");
+    };
+
+    document.querySelectorAll(".theme-toggler .theme-btn").forEach((btn) => {
+      btn.onclick = () => {
+        let color = btn.style.background;
+        document
+          .querySelector(":root")
+          .style.setProperty("--theme-color", color);
+      };
+    });
+
+    var swiper = new Swiper(".home-slider", {
+      effect: "coverflow",
+      grabCursor: true,
+      centeredSlides: true,
+      slidesPerView: "auto",
+      coverflowEffect: {
+        rotate: 0,
+        stretch: 0,
+        depth: 100,
+        modifier: 2,
+        slideShadows: true,
+      },
+      loop: true,
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+      },
+    });
+
+    var swiper = new Swiper(".review-slider", {
+      slidesPerView: 1,
+      grabCursor: true,
+      loop: true,
+      spaceBetween: 10,
+      breakpoints: {
+        0: {
+          slidesPerView: 1,
+        },
+        700: {
+          slidesPerView: 2,
+        },
+        1050: {
+          slidesPerView: 3,
+        },
+      },
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+      },
+    });
+
+    const eventsData = [
+      {
+        type: "Weddings",
+        description:
+          "Personalized Theme Design, Premium Venue Upgrades, Bespoke Entertainment Experiences :",
+        image: "wedding.jpeg",
+        price: 8000,
+        services: ["catering", "photography"],
+      },
+      {
+        type: "Conferences",
+        description:
+          "Keynote Speakers, VIP Networking Opportunities, Customized Workshop Sessions :",
+        image: "conference.jpeg",
+        price: 5000,
+        services: ["catering", "photography"],
+      },
+      {
+        type: "Parties",
+        description:
+          "Celebrity Guest Appearances, Premium Entertainment, Luxury Decor and Theming :",
+        image: "party.jpeg",
+        price: 3000,
+        services: ["catering", "entertainment"],
+      },
+      {
+        type: "Weddings",
+        description:
+          " Theme Design, Venue Options, Entertainment Selection :",
+        image: "wedding2.jpeg",
+        price: 7000,
+        services: ["catering", "photography"],
+      },
+      {
+        type: "Conferences",
+        description:
+          "Standard Industry Speakers, Networking Opportunities, General Workshop Sessions :",
+        image: "conference2.jpeg",
+        price: 4000,
+        services: ["catering", "photography"],
+      },
+      {
+        type: "Parties",
+        description:
+          "Professional Entertainment, Customized Theming, Quality Catering and Beverage Options :",
+        image: "party2.jpeg",
+        price: 2000,
+        services: ["catering", "entertainment"],
+      },
+    ];
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const eventListing = document.getElementById("event-listing");
+      const serviceCheckboxes =
+        document.querySelectorAll(".service-checkbox");
+      const budgetRadios = document.querySelectorAll(".budget-radio");
+      const eventDetails = document.getElementById("event-details");
+      const contactForm = document.getElementById("contact-form");
+
+      eventsData.forEach((event) => {
+        const eventItem = document.createElement("div");
+        eventItem.classList.add("event-item");
+        eventItem.innerHTML = `
+                        <img src="${event.image}" alt="${event.type}">
+                        <h3>${event.type}</h3>
+                        <p>${event.description}</p>
+                        <p>Price: $${event.price}</p>
+                    `;
+        eventItem.addEventListener("click", () => showEventDetails(event));
+        eventListing.appendChild(eventItem);
+      });
+
+      // Event details view
+      function showEventDetails(event) {
+        eventDetails.innerHTML = `
+                        <img src="${event.image}" alt="${event.type}">
+                        <h2>${event.type}</h2>
+                        <p>Description: ${event.description}</p>
+                        <p>Price: $${event.price}</p>
+                    `;
+        eventDetails.style.display = "block";
+      }
+
+      // Checkbox filtering
+      serviceCheckboxes.forEach((checkbox) => {
+        checkbox.addEventListener("change", filterEvents);
+      });
+
+      // Radio button filtering
+      budgetRadios.forEach((radio) => {
+        radio.addEventListener("change", filterEvents);
+      });
+
+      function filterEvents() {
+        const selectedServices = [...serviceCheckboxes]
+          .filter((checkbox) => checkbox.checked)
+          .map((checkbox) => checkbox.value);
+        const selectedBudget = [...budgetRadios].find(
+          (radio) => radio.checked
+        )?.value;
+
+        const filteredEvents = eventsData.filter((event) => {
+          if (
+            selectedServices.length > 0 &&
+            !selectedServices.every((service) =>
+              event.services.includes(service)
+            )
+          ) {
+            return false;
+          }
+
+          if (selectedBudget && !checkBudget(event.price, selectedBudget)) {
+            return false;
+          }
+
+          return true;
+        });
+
+        displayFilteredEvents(filteredEvents);
+      }
+
+      function checkBudget(price, selectedBudget) {
+        const [min, max] = selectedBudget
+          .split("-")
+          .map((val) => parseInt(val));
+        if (min && max) {
+          return price >= min && price <= max;
+        } else if (min) {
+          return price >= min;
+        } else if (max) {
+          return price <= max;
+        }
+        return true;
+      }
+
+      function displayFilteredEvents(events) {
+        eventListing.innerHTML = "";
+        events.forEach((event) => {
+          const eventItem = document.createElement("div");
+          eventItem.classList.add("event-item");
+          eventItem.innerHTML = `
+                            <img src="${event.image}" alt="${event.type}">
+                            <h3>${event.type}</h3>
+                            <p>${event.description}</p>
+                            <p>Price: $${event.price}</p>
+                        `;
+          eventItem.addEventListener("click", () => showEventDetails(event));
+          eventListing.appendChild(eventItem);
+        });
+      }
+
+      contactForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const formData = new FormData(contactForm);
+        const formDataObject = {};
+        formData.forEach((value, key) => {
+          formDataObject[key] = value;
+        });
+
+        console.log("Form data:", formDataObject);
+
+        window.location.href = "cart.html";
+      });
+    });
+
+  </script>
+   
+</body>
+
+</html>
